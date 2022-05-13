@@ -39,9 +39,10 @@ select count(*) from departments;
 
 -- 문제6.
 -- 현재 부서 매니저는 몇 명이나 있나요?(역임 매너저는 제외)
-SELECT distinct emp_no
-FROM dept_manager;
-desc dept_manager;
+SELECT count(dept_no)
+FROM dept_manager
+where to_date = '9999-01-01';
+
 
 -- 문제7.
 -- 전체 부서를 출력하려고 합니다. 순서는 부서이름이 긴 순서대로 출력해 보세요.
@@ -74,4 +75,8 @@ and b.to_date = '9999-01-01';
 
 -- 문제11
 -- 사번이 13250(Zeydy)인 지원이 직책 변경 상황을 시간순으로 출력해보세요.
+select emp_no, title, from_date, to_date
+	from titles
+where emp_no = '13250'
+order by from_date;
 
