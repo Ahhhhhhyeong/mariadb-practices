@@ -39,5 +39,5 @@ FROM salaries;
 -- 최고 어린 사원의 나이와 최 연장자의 나이는? 
 SELECT 
 	date_format(now(), '%Y') - date_format(max(birth_date), '%Y') as 막내나이,
-    date_format(now(), '%Y') - date_format(max(birth_date), '%Y') as 연장자나이
+    date_format(now(), '%Y') - date_format(min(birth_date), '%Y') as 연장자나이
 from employees;
