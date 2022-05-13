@@ -20,7 +20,7 @@ order by  a.hire_date, a.first_name, a.gender;
 
 -- 문제3.
 -- 여직원과 남직원은 각 각 몇 명이나 있나요?
-select sum(gender)
+select if(gender = 'M', '남자', '여자') as 'gender', sum(gender) as sum
 from employees
 group by gender;
 
