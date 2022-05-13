@@ -15,16 +15,14 @@ concat(a.first_name,a.last_name ) as '이름',
 a.gender as '성별', 
 a.hire_date as '입사일'
 	from employees as a 
-inner join salaries as b on a.emp_no = b.emp_no
-group by b.emp_no
-order by b.salary desc, a.first_name, a.gender, a.hire_date;
+order by  a.hire_date, a.first_name, a.gender;
 
 
 -- 문제3.
 -- 여직원과 남직원은 각 각 몇 명이나 있나요?
-select distinct (select count(gender) from employees where gender = 'M') as man,
-	(select count(gender) from employees where gender = 'F') as Female
-from employees;
+select sum(gender)
+from employees
+group by gender;
 
 
 -- 문제4.
@@ -41,8 +39,9 @@ select count(*) from departments;
 
 -- 문제6.
 -- 현재 부서 매니저는 몇 명이나 있나요?(역임 매너저는 제외)
-
-
+SELECT distinct emp_no
+FROM dept_manager;
+desc dept_manager;
 
 -- 문제7.
 -- 전체 부서를 출력하려고 합니다. 순서는 부서이름이 긴 순서대로 출력해 보세요.
