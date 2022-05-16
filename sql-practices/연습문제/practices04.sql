@@ -160,6 +160,8 @@ LIMIT 1;
 -- 문제8. 
 -- 현재 자신의 매니저보다 높은 연봉을 받고 있는 직원은? 
 -- 부서이름, 사원이름, 연봉, 매니저 이름, 메니저 연봉 순으로 출력합니다. 
+
+-- join만으로 풂(8.344sec 걸림)
 SELECT 
     c.dept_name,
     CONCAT(a.first_name, a.last_name) AS name,
@@ -187,7 +189,31 @@ WHERE
         AND ae.salary > e.salary
 GROUP BY c.dept_name , a.first_name , a.last_name , da.first_name , da.last_name , e.salary;
 
-
-
-
+-- subquery 사용(5.578sec 걸림)
+SELECT 
+    c.dept_name,
+    CONCAT(a.first_name, a.last_name) AS name,
+    MAX(ae.salary) AS employee_salary,
+    s.name AS manager,
+    s.salary AS manager_salary
+FROM
+    employees a,
+    salaries ae,
+    dept_emp b,
+    departments c,
+	(SELECT concat(e.first_name, e.last_name) name, s.salary, d.dept_no
+	  FROM dept_manager d, employees e, salaries s
+	  where d.emp_no = e.emp_no
+	  and d.emp_no = s.emp_no
+	  and d.to_date = '9999-01-01'
+	  and s.to_date = '9999-01-01')s
+where a.emp_no = ae.emp_no
+and	 a.emp_no = b.emp_no
+and  b.dept_no = c.dept_no
+and  s.dept_no = c.dept_no
+and  ae.to_date = '9999-01-01'
+and  b.to_date = '9999-01-01' 
+group by c.dept_name, a.first_name, a.last_name, s.name, s.salary;
+	  
+  
 
