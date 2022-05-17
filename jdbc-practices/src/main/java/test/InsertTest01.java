@@ -19,7 +19,7 @@ public class InsertTest01 {
 		Connection connection = null;
 		Statement stat = null; 
 		try {
-				Class.forName("org.mariadb.jdbc.Driver"); // static에서 커넥션을 만듦
+				Class.forName("org.mariadb.jdbc.Driver"); // static에서 커넥션을 만듦 / 오타 조심!
 							
 				// 2. 연결하기
 				String url = "jdbc:mysql://127.0.0.1:3307/webdb?charset=utf8";
