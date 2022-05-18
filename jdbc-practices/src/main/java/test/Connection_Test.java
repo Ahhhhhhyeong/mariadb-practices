@@ -13,7 +13,7 @@ public class Connection_Test {
 			Class.forName("org.mariadb.jdbc.Driver"); // static에서 커넥션을 만듦
 						
 			// 2. 연결하기
-			String url = "jdbc:mysql://127.0.0.1:3307/webdb?charset=utf8";
+			String url = "jdbc:mysql://192.168.10.41:3307/webdb?charset=utf8";
 			connection = DriverManager.getConnection(url, "webdb", "webdb");
 			System.out.println("CONNECTED!!");			
 			
