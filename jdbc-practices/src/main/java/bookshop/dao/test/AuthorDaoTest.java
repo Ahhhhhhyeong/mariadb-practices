@@ -6,32 +6,28 @@ import bookshop.vo.AuthorVo;
 public class AuthorDaoTest {
 
 	public static void main(String[] args) {
+		testInsert();
+	}
+	
+	public static void testInsert() {
+		AuthorDao dao = new AuthorDao();		
 		AuthorVo vo = new AuthorVo();
 		
 		vo.setName("조정래");
-		testInsert(vo);
+		dao.insert(vo);
 		
 		vo.setName("김동인");
-		testInsert(vo);
+		dao.insert(vo);
 		
 		vo.setName("김난도");
-		testInsert(vo);
+		dao.insert(vo);
 		
 		vo.setName("천상병");
-		testInsert(vo);
+		dao.insert(vo);
 		
 		vo.setName("원수연");
-		testInsert(vo);	
+		dao.insert(vo);	
 		
-	}
-	
-	public static void testInsert(AuthorVo vo) {
-		boolean result = new AuthorDao().insert(vo);
-		if(result) {
-			System.out.println("success");
-		}else {
-			System.out.println("failed");
-		}
 	}
 	
 

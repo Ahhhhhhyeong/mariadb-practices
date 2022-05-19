@@ -5,8 +5,7 @@ public class BookVo {
 	private String title;
 	private String stateCode;
 	private Long authoNo;
-	private String name;
-	
+	private String name; // authorName
 
 	@Override
 	public String toString() {
