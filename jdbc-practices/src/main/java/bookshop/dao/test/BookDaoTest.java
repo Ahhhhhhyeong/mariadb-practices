@@ -9,14 +9,14 @@ public class BookDaoTest {
 
 	public static void main(String[] args) {
 		testUpdate();
+		testFindAll();
 	}
 	
-	private static int testFindAll() {
+	private static void testFindAll() {
 		List<BookVo> list = new BookDao().findAll();	
 		for(BookVo vo : list) {
 			System.out.println();
 		}
-		return list.size();
 	}
 
 	public static void testInsert() {			
