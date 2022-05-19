@@ -1,7 +1,7 @@
 package vo;
 
 public class OrderVo {
-	private int no;
+	private String no;
 	private String price;
 	private String ship;
 	private int member_no;
@@ -17,10 +17,10 @@ public class OrderVo {
 	public void setBook_title(String book_title) {
 		this.book_title = book_title;
 	}
-	public int getNo() {
+	public String getNo() {
 		return no;
 	}
-	public void setNo(int no) {
+	public void setNo(String no) {
 		this.no = no;
 	}
 	public String getPrice() {

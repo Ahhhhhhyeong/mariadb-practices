@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vo.OrderVo;
-import vo.OrderVo;
 
 public class OrderDao {
 
@@ -34,7 +33,7 @@ public class OrderDao {
 			
 			while(rs.next()) {
 				OrderVo vo = new OrderVo();
-				vo.setNo(rs.getInt(1));
+				vo.setNo(rs.getString(1));
 				vo.setBook_title(rs.getString(2));
 				vo.setAmount(rs.getString(3));
 				vo.setPrice(rs.getString(4));
@@ -70,11 +69,12 @@ public class OrderDao {
 		try {
 			connection = getConnection();
 				
-			String sql = " Insert into orders values (null,?,?,?) ";
-			pstmt = connection.prepareStatement(sql);			
-			pstmt.setString(1,vo.getPrice());
-			pstmt.setString(2,vo.getShip());
-			pstmt.setLong(3,vo.getMember_no());		
+			String sql = " Insert into orders values (?,?,?,?) ";
+			pstmt = connection.prepareStatement(sql);	
+			pstmt.setString(1, vo.getNo());
+			pstmt.setString(2,vo.getPrice());
+			pstmt.setString(3,vo.getShip());
+			pstmt.setLong(4,vo.getMember_no());		
 					
 			int count = pstmt.executeUpdate();
 			result = count == 1;
@@ -105,7 +105,7 @@ public class OrderDao {
 			String sql = "Insert into orders_book values (?,?,?) ";
 			pstmt = connection.prepareStatement(sql);			
 			pstmt.setLong(1,vo.getBook_no());
-			pstmt.setLong(2,vo.getNo());
+			pstmt.setString(2,vo.getNo());
 			pstmt.setString(3,vo.getAmount());			
 						
 			pstmt.executeUpdate();

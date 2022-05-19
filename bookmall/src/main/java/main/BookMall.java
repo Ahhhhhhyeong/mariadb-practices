@@ -1,5 +1,7 @@
 package main;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import dao.BookDao;
@@ -24,15 +26,24 @@ public class BookMall {
 	}
 
 	private static void OrderInsert() {
+		// 현재 날짜 구하기
+		LocalDate now = LocalDate.now();
+		// 포맷 정의
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+		// 포맷 적용
+		String formatedNow = now.format(formatter);		
+		
+		
 		OrderVo vo = new OrderVo();
-		vo.setPrice("30000");
-		vo.setShip("베이커가");
-		vo.setMember_no(5);
+		vo.setNo(formatedNow + "-" +"0001");
+		vo.setPrice("17600");
+		vo.setShip("집");
+		vo.setMember_no(2);
 		OrderDao.insert(vo);
 		
 		OrderVo Ovo = new OrderVo();
-		Ovo.setBook_no(5);
-		Ovo.setNo(3);
+		Ovo.setBook_no(2);
+		Ovo.setNo(formatedNow + "-" +"0001");
 		Ovo.setAmount("1");
 		OrderDao.insertOrderBook(Ovo);
 		
@@ -46,7 +57,7 @@ public class BookMall {
 	private static void cartInput() {
 		CartVo vo = new CartVo();
 		
-		vo.setBook_no(4);
+		vo.setBook_no(1);
 		vo.setMember_no(2);
 		vo.setAmount(3);
 		CartDao.insert(vo);
@@ -61,9 +72,9 @@ public class BookMall {
 
 	private static void memberInput() {
 		MemberVo vo = new MemberVo();
-		vo.setName("베지터");
-		vo.setTel("01077778888");
-		vo.setEmail("vegeta@gmail.com");
+		vo.setName("손오공");
+		vo.setTel("01077778883");
+		vo.setEmail("son@gmail.com");
 		vo.setPassword("1234");
 		MemberDao.insert(vo);
 		
@@ -78,9 +89,9 @@ public class BookMall {
 
 	private static void bookInput() {
 		BookVo vo = new BookVo();
-		vo.setTitle("부의 변곡점");
-		vo.setPrice("15800");
-		vo.setCategory_no(4);
+		vo.setTitle("혼자 공부하는 파이썬");
+		vo.setPrice("16200");
+		vo.setCategory_no(7);
 		BookDao.insert(vo);
 		
 		// 책 목록 보여주기
@@ -95,7 +106,7 @@ public class BookMall {
 	private static void categoryInput() {
 		CategoryVo vo = new CategoryVo();
 		
-		vo.setName("종교");
+		vo.setName("컴퓨터/IT");
 		CategoryDao.insert(vo);		
 		
 		// 카테고리 목록 보여주기
